@@ -1,4 +1,4 @@
-# OTRS + Telegram integration
+# OTRS + Telegram integration for notification new ticket
 This document is intended to perform the integration of OTRS with Telegram.
 
 ### 1: Create a bot in telegram, and get the groupid for send menssages, follow this steps "https://github.com/Iakim/Zabbix-Telegram/blob/master/Zabbix-Telegram-com-graficos.pdf" to page two.
