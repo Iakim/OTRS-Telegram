@@ -17,4 +17,4 @@ This document is intended to perform the integration of OTRS with Telegram.
     
 ### 5: Create a crontab like:
     
-    */5 * * * * sh /opt/telegram-otrs.sh
+    */1 * * * * sh /opt/telegram-otrs.sh
