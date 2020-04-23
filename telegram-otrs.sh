@@ -10,12 +10,14 @@ SUBJECT="$text"
 SUBJECT="${SUBJECT//,/ }"
 MESSAGE="chat_id=${USER}&text=$text"
 OTRSMSG="/tmp/otrs-message-$(date "+%Y.%m.%d-%H.%M.%S").tmp"
-BOT_TOKEN='868882761:AAFPNvQ3SMjngpnYovfABCDG6MeMg8oKkzA'
-USER='-357888503'
+BOT_TOKEN='866888761:AAFPNvQ3SMjngpABCDXrLQG6MeMg8oKkzA'
+USER='-357688803'
 CURL="/usr/bin/curl"
 COOKIE="/tmp/telegram_cookie-$(date "+%Y.%m.%d-%H.%M.%S")"
-IDSQL=`mysql --defaults-extra-file=/opt/otrs.txt -e 'use otrs; select id, tn, title, customer_user_id, create_time from ticket;' | tail -n1 | sed 's/ /_/g' | awk '{print$1}'`
 OLDIDSQL=`cat /opt/old.txt`
+NEWIDSQL=`echo $(($OLDIDSQL+1))`
+IDSQL=`mysql --defaults-extra-file=/opt/otrs.txt -e 'use otrs; select id, tn, title, customer_user_id, create_time from ticket;' | tail -n20 | grep "$OLDIDSQL\|$NEWIDSQL" | tail -n1 | awk '{print$1}'`
+
 if [ "$IDSQL" -gt "$OLDIDSQL" ]
 then
 	echo "$IDSQL" > /opt/id.txt
@@ -27,7 +29,7 @@ then
 	B="Título: $TITLESQL"
 	C="Cliente: $USERSQL"
 	D="Data de Criação: $DATECREATESQL"
-	SUBJECT="Você tem um novo chamado no OTRS!"
+	SUBJECT="Abaixo seguem os chamdos novos!"
 	SUBJECT=`echo $SUBJECT | sed 's/ /%20/g'`
 	SUBJECT="${SUBJECT//,/ }"
 	echo "$MESSAGE" > $OTRSMSG
