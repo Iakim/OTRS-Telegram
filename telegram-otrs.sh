@@ -29,7 +29,7 @@ then
 	B="Título: $TITLESQL"
 	C="Cliente: $USERSQL"
 	D="Data de Criação: $DATECREATESQL"
-	SUBJECT="Abaixo seguem os chamdos novos!"
+	SUBJECT="Abaixo seguem os chamados novos!"
 	SUBJECT=`echo $SUBJECT | sed 's/ /%20/g'`
 	SUBJECT="${SUBJECT//,/ }"
 	echo "$MESSAGE" > $OTRSMSG
